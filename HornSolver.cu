@@ -43,22 +43,22 @@ int main()
   // Allocate all of the data structures
   Construct();
 
-	// call the function to set the GPU Parameters and call the kernel functions
-	HornCuda(nextpos, lett, clause, tipo, poslet, num_args, matrixelem, row, col, n, m, nk);
+  // call the function to set the GPU Parameters and call the kernel functions
+  HornCuda(nextpos, lett, clause, tipo, poslet, num_args, matrixelem, row, col, n, m, nk);
+	
+  // free the memory used
+  free(matrix);
+  free(matrixelem);
+  free(col);
+  free(row);
+  free(lett);
+  free(clause);
+  free(poslet);
+  free(tipo);
+  free(nextpos);
 
-	// free the memory used
-	free(matrix);
-	free(matrixelem);
-	free(col);
-	free(row);
-	free(lett);
-	free(clause);
-	free(poslet);
-	free(tipo);
-	free(nextpos);
-
-	// Free the GPU Device
-	HANDLE_ERROR(cudaDeviceReset());
-
-	return 0;
+  // Free the GPU Device
+  HANDLE_ERROR(cudaDeviceReset());
+	
+  return 0;
 }
