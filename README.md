@@ -26,7 +26,12 @@ This program is composed by some file:
 * kernel_function.cu: contains the kernel functions
 * info.cu: a simple program to show some GPU Devices Information
 
-# Compile and Run The Program
+# Compile and Run info.cu
+Open in Terminal the folder where is the program.
+* $ nvcc -arch sm_20 info.cu -o print_info
+* $ optirun ./print_info
+
+# Compile and Run The HornSolver.cu
 Open in Terminal the folder where is the program.
 * $ nvcc -arch sm_20 HornSolver.cu -o Main
 and run it.
