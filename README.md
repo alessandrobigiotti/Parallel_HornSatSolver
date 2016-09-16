@@ -28,14 +28,15 @@ This program is composed by some files:
 * dataStruct.c: contains the data structures used by the program
 * kernel_function.cu: contains the kernel functions
 * info.cu: a simple program to show some GPU Devices Information
+* data: a folder that contains some file created during the execution
+* otherlib: a folder that contains a library named "book.h"
 
 # Compile and Run info.cu
-Open in Terminal the folder where is the program.
+Open the Terminal, move to the folder where is the program and type:
 * $ nvcc -arch sm_20 info.cu -o print_info
 * $ optirun ./print_info
 
 # Compile and Run The HornSolver.cu
-Open in Terminal the folder where is the program.
+Open the Terminal, move to the folder where is the program and type:
 * $ nvcc -arch sm_20 HornSolver.cu -o Main
-and run it.
 * $ optirun ./Main
