@@ -8,7 +8,7 @@ __global__ void UnitClause(int NValid, int b, int t, int *nextpos, int *num_args
 	int idblock = blockIdx.x;
 	int indexpos = 0;
 	int indexclause = 0;
-  
+
 	if (idblock*t + idx < m){
 		if (tipo[idblock*t + idx] == 1){
 			indexpos = poslet[idblock*t + idx];
@@ -35,6 +35,7 @@ __global__ void Propagate(int NValid, int b, int t, int *nextpos, int *num_args,
 			for (int i = row[indexpos]; i < row[indexpos + 1]; i++){
 				if (matrixelem[i] == 2){
 					int old = atomicSub(num_args + col[i], 1);
+					printf("%d\n",old);
 					if (old == 1){
 						indexnextpos = poslet[col[i]];
 						if (indexnextpos != NValid){
