@@ -37,54 +37,54 @@ void HornCuda(int *nextpos, int *lett, int *clause, int *tipo, int *poslet, int 
 	HANDLE_ERROR(cudaMemcpy(dev_tipo, tipo, m * sizeof(int), cudaMemcpyHostToDevice));
 	HANDLE_ERROR(cudaMemcpy(dev_poslet, poslet, m * sizeof(int), cudaMemcpyHostToDevice));
 
-  // Calculate the Block number
+	// Calculate the Block number
 	int numblock = MYCEIL(m, 480);
 
-  // Set the Grid and Block Dimension
+  	// Set the Grid and Block Dimension
 	dim3 dimGrid(numblock, 1);
 	dim3 dimBlock(480, 1, 1);
 
-  // Create an Event to see the execution time
+  	// Create an Event to see the execution time
 	cudaEvent_t start = 0, stop = 0;
 	cudaEventCreate(&start);
 	cudaEventCreate(&stop);
 	cudaEventRecord(start, 0);
 
 	int b = numblock;
-  int t = 480;
+  	int t = 480;
 
 	printf("Call UnitClauseKernel\n");
 	// Call the UnitClause Kernel
 	UnitClause << <dimGrid, dimBlock >> >(NValid, b, t, dev_nextpos, dev_numargs, dev_lett, dev_clause, dev_matrixelem, dev_col, dev_row, dev_poslet, dev_tipo, n, m, nk);
-  // Read the results after the call
+  	// Read the results after the call
 	HANDLE_ERROR(cudaMemcpy(nextpos, dev_nextpos, (m + 2) * sizeof(int), cudaMemcpyDeviceToHost));
 	HANDLE_ERROR(cudaMemcpy(lett, dev_lett, n*sizeof(int), cudaMemcpyDeviceToHost));
 
-  // Check Satisfiability to continue
+  	// Check Satisfiability to continue
 	if (nextpos[m] == 1){
 		check = true;
 	}
 
 	printf("Call Secondo Kernel interatively...\n");
-  // Iterate until the formula is satisfiable
+  	// Iterate until the formula is satisfiable
 	while (check){
 		check = false;
 		nextpos[m] = 0;
-    // Copy the updated values into GPU Memory
+    		// Copy the updated values into GPU Memory
 		HANDLE_ERROR(cudaMemcpy(dev_lett, lett, n * sizeof(int), cudaMemcpyHostToDevice));
 		HANDLE_ERROR(cudaMemcpy(dev_nextpos, nextpos, (m + 2) * sizeof(int), cudaMemcpyHostToDevice));
-    // Call Propagate Kernel
+    		// Call Propagate Kernel
 		Propagate<< <dimGrid, dimBlock >> >(NValid, b, t, dev_nextpos, dev_numargs, dev_lett, dev_clause, dev_matrixelem, dev_col, dev_row, dev_poslet, dev_tipo, n, m, nk);
-    // Read the results
+    		// Read the results
 		HANDLE_ERROR(cudaMemcpy(nextpos, dev_nextpos, (m + 2) * sizeof(int), cudaMemcpyDeviceToHost));
 		HANDLE_ERROR(cudaMemcpy(lett, dev_lett, n*sizeof(int), cudaMemcpyDeviceToHost));
-    // Check Satisfiability to continue
+    		// Check Satisfiability to continue
 		if (nextpos[m] == 1 && nextpos[m + 1] != NValid){
 			check = true;
 		}
 	}
 
-  // Print the relust (Yes or Not)
+  	// Print the relust (Yes or Not)
 	if (nextpos[m + 1] == NValid){
 		printf("\nNO, the formula is UNSATISFIABLE\n");
 	}
@@ -103,7 +103,7 @@ void HornCuda(int *nextpos, int *lett, int *clause, int *tipo, int *poslet, int 
 		fclose(ptr);
 	}
 
-  // Stop the event and read the Execution Time
+	// Stop the event and read the Execution Time
 	cudaEventRecord(stop, 0);
 	cudaEventSynchronize(stop);
 	float elapsedTime;
@@ -122,4 +122,7 @@ void HornCuda(int *nextpos, int *lett, int *clause, int *tipo, int *poslet, int 
 	cudaFree(dev_tipo);
 	cudaFree(dev_nextpos);
 	cudaFree(dev_numargs);
+	
+	 // Free the GPU Device
+	 HANDLE_ERROR(cudaDeviceReset());
 }
