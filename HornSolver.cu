@@ -45,7 +45,7 @@ int main()
 
   // call the function to set the GPU Parameters and call the kernel functions
   HornCuda(nextpos, lett, clause, tipo, poslet, num_args, matrixelem, row, col, n, m, nk);
-	
+
   // free the memory used
   free(matrix);
   free(matrixelem);
@@ -56,6 +56,6 @@ int main()
   free(poslet);
   free(tipo);
   free(nextpos);
-	
+
   return 0;
 }

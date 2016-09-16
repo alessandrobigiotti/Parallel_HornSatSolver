@@ -35,7 +35,6 @@ __global__ void Propagate(int NValid, int b, int t, int *nextpos, int *num_args,
 			for (int i = row[indexpos]; i < row[indexpos + 1]; i++){
 				if (matrixelem[i] == 2){
 					int old = atomicSub(num_args + col[i], 1);
-					printf("%d\n",old);
 					if (old == 1){
 						indexnextpos = poslet[col[i]];
 						if (indexnextpos != NValid){

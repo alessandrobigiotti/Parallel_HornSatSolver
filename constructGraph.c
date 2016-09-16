@@ -41,6 +41,7 @@ void Construct(){
             matrix[i + (elem - 1)*m] = 2;
           }
         }
+
       } while (elem != 0);
     }
   }
@@ -158,6 +159,7 @@ void Construct(){
       if (sum % 2 == 0){
         fprintf(fd, "%d\n", NValid);
       }
+      
       fprintf(fp, "%d\n", sum);
       sum = 0;
     }
@@ -166,7 +168,7 @@ void Construct(){
   fclose(fd);
 
   // Initialize array of type
-  fp = fopen(path_poslet, "r");
+  fp = fopen(path_tipo, "r");
   if (fp == NULL) { printf("Error opening file\n"); }
   tipo = (int *)malloc(m*sizeof(int));
   for (int i = 0; i < m; i++){
@@ -213,5 +215,4 @@ void Construct(){
   }
   fclose(fp);
 
-  
 }
