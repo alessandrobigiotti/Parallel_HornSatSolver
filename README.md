@@ -24,7 +24,7 @@ A program to check the satisfiability of a HornSAT Formula.
 This program is composed by some files:
 * HornSoler.cu: contains the Main function, is the file to compile;
 * constructGraph.c: contains a function to read the CNF file of the formula and construct the incidence matrix of the formula;
-* cuda_setting.cu: contains a function to allocate the GPU Memory, calculate the Grid/Block dimension and call the kernel functions
+* cuda_setting.cu: contains a function to allocate the GPU Memory, calculate the Grid/Block dimensions and call the kernel functions
 * dataStruct.c: contains the data structures used by the program
 * kernel_function.cu: contains the kernel functions
 * info.cu: a simple program to show some GPU Devices Information
