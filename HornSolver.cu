@@ -56,9 +56,6 @@ int main()
   free(poslet);
   free(tipo);
   free(nextpos);
-
-  // Free the GPU Device
-  HANDLE_ERROR(cudaDeviceReset());
 	
   return 0;
 }
