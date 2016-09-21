@@ -35,8 +35,8 @@ This program is composed by some files:
 
 ## Compile and Run info.cu
 Open the Terminal, move to the folder where is the program and type:
-* $ nvcc -arch sm_20 info.cu -o print_info
-* $ optirun ./print_info
+* $ _nvcc -arch sm_20 info.cu -o print_info_
+* $ _optirun ./print_info_
 
 ## Compile and Run The HornSolver.cu
 Open the Terminal, move to the folder where is the program and type:
