@@ -11,7 +11,7 @@ it creates the graph associated, some auxiliary data structures and calls the ke
 It doesn't work on the CNF file directly, but it works on the Graph constructed with the roles specified by [(link to papaer)]
 (http://www.sciencedirect.com/science/article/pii/0743106684900141).
 
-## Requiriments
+## Requests
 The program is written in CUDA(c) language, then it works only with NVIDIA Devices.
 To compile and run the program we need to install all of necessary software:
 * The gcc compiler; generally it is installed by default, if you haven't it, open the terminal and type the command(Debian/Ubuntu):
