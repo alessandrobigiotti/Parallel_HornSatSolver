@@ -40,5 +40,5 @@ Open the Terminal, move to the folder where is the program and type:
 
 ## Compile and Run The HornSolver.cu
 Open the Terminal, move to the folder where is the program and type:
-* $ nvcc -arch sm_20 HornSolver.cu -o Main
-* $ optirun ./Main
+* $ _nvcc -arch sm_20 HornSolver.cu -o Main_
+* $ _optirun ./Main_
