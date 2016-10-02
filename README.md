@@ -8,7 +8,7 @@ The program implements a parallel version of the algorithm proposed by Dowling a
 ## Introduction
 The program takes in  input a file.CNF containing the formula (the file.CNF must be specified by a path), after that 
 it creates the graph associated, some auxiliary data structures and calls the kernel function to solve the problem.
-It doesn't work on the CNF file directly, but it works on the Graph constructed with the roles specified by [(link to papaer)]
+It doesn't work on the CNF file directly, but it works on the Graph constructed with the rules specified by [(link to papaer)]
 (http://www.sciencedirect.com/science/article/pii/0743106684900141).
 
 ## Requests
