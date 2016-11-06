@@ -13,7 +13,7 @@ It doesn't work on the CNF file directly, but it works on the Graph constructed 
 
 ## Requests
 The program is written in CUDA(c) language, then it works only with NVIDIA Devices.
-To compile and run the program we need to install all of necessary software:
+To compile and run the program we need to install all necessary software:
 * The gcc compiler; generally it is installed by default, if you haven't it, open the terminal and type the command(Debian/Ubuntu):
   * $ sudo apt-get install gcc
 * See this guide to install CUDA: [link to instruction](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4KKVroazE)
